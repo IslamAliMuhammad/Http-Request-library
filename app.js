@@ -4,9 +4,10 @@ const http = new HttpRequestLibrary();
 
 //Testing get()
 
-// http.get('https://jsonplaceholder.typicode.com/users')
-//   .then(data => console.log(data))
-//   .catch(err => console.log(err));
+http.get('https://jsonplaceholder.typicode.com/users')
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+
 
 //Testing post() 
 
@@ -14,12 +15,12 @@ const http = new HttpRequestLibrary();
 //   title: 'title for trying to post',
 //   body: 'body for trying to post'
 // };
-// http.post('https://jsonplaceholder1.typicode.com/posts', data)
+// http.post('https://jsonplaceholder.typicode.com/posts', data)
 // .then(newPost => console.log(newPost))
-// .catch(err => console.log(err));
+// .catch(() => console.log('Error: Faild to post'));
 
 
-// Testing put()
+// Testing put method
 
 // const data = {
 //   title: 'title for trying to put',
@@ -27,9 +28,11 @@ const http = new HttpRequestLibrary();
 // };
 // http.put('https://jsonplaceholder.typicode.com/posts/1', data)
 // .then(updatedData => console.log(updatedData))
-// .catch(err => console.log(err));
+// .catch(() => console.log('Error: Faild to update (PUT)'));
 
 
-http.delete('https://jsonplaceholder.typicode.com/posts/1')
-    .then(deletedData => console.log(deletedData))
-    .catch(err => console.log(err));
+// Testing delete method
+
+// http.delete('https://jsonplaceholder.typicode.com/posts/1')
+//     .then(deletedData => console.log(deletedData))
+//     .catch(() => console.log('Error: Faild to delete'));

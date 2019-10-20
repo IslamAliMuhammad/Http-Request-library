@@ -3,54 +3,44 @@
 class HttpRequestLibrary {
 
   //HTTP GET REQUEST
-  get(url) {
-    return new Promise((resolve, reject) => {
-      fetch(url)
-        .then(res => res.json())
-        .then(data => resolve(data))
-        .catch(err => reject(err));
-    });
+  async get(url) {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
   }
 
   //HTTP POST REQUEST
-  post(url, data) {
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'POST',
-        header: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      })
-        .then(response => response.json())
-        .then(newData => resolve(newData))
-        .catch(() => reject('Error: Faild to post'));
+  async post(url, data) {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
     });
+    const newData = await response.json();
+    return newData;
   }
 
   //HTTP PUT REQUEST
-  put(url, data) {
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      })
-        .then(response => response.json())
-        .then(updatedData => resolve(updatedData))
-        .catch(() => reject('Error: Faild to update (PUT)'));
+  async put(url, data) {
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
     });
+    const updatedData = await response.json();
+    return updatedData;
   }
 
   //HTTP DELETE REQUEST
-  delete(url) {
-    return new Promise((resolve, reject) => {
-      fetch(url, {
-        method: 'DELETE',
-        headers: { 'Content-type': 'application/json' },
-      })
-        .then(response => response.json())
-        .then(() => resolve('Data deleted'))
-        .catch(() => reject('Error: Faild to delete'));
+  async delete(url) {
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: { 'Content-type': 'application/json' },
     });
+    const deletedData = await response.json();
+    return 'Data deleted';
   }
+
+
 }
 
