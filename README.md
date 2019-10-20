@@ -1,6 +1,6 @@
 # Http-Request-library
 
-Library that making dealiing with api over http protocol easy through using http mehod (GET, POST, PUT, DELETE)
+A library that making dealing with API over HTTP protocol easy through using the HTTP method (GET, POST, PUT, DELETE)
 
 ## Getting Started
 
@@ -10,3 +10,6 @@ Using this library through Instantiate constructer function `new HttpRequestLibr
 * post()
 * put()
 * delete()
+
+**Note:** Each method returning a promise
+
