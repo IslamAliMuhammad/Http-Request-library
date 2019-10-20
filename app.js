@@ -1,59 +1,35 @@
-// Testing library json placeholder 
+//This file for testing http request library
 
-const httpRequest = new HttpRequestLibrary();
+const http = new HttpRequestLibrary();
 
-// GET METHOD
+//Testing get()
 
-// httpRequest.get('https://jsonplaceholder.typicode.com/users',
-//  function(err, response){
-//    if(err){
-//     console.log(err);
+// http.get('https://jsonplaceholder.typicode.com/users')
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err));
 
-//    }else{
-//     console.log(response);
-//    }
-// });
-
-
-//POST METHOD
+//Testing post() 
 
 // const data = {
-//   title: 'Custom post',
-//   body: 'This is a custom post'
+//   title: 'title for trying to post',
+//   body: 'body for trying to post'
 // };
-// httpRequest.post('https://jsonplaceholder.typicode.com/posts1', data, function(err, response){
-//   if(err){
-//     console.log(err);
-//   }else{
-//     console.log(response);
-//   }
-  
-// });
+// http.post('https://jsonplaceholder1.typicode.com/posts', data)
+// .then(newPost => console.log(newPost))
+// .catch(err => console.log(err));
 
 
-//PUT METHOD
+// Testing put()
 
 // const data = {
-//   title: 'Updated post',
-//   body: 'This is updated post'
+//   title: 'title for trying to put',
+//   body: 'body for trying to put'
 // };
-// httpRequest.put('https://jsonplaceholder.typicode.com/posts/1', data, function(err, response){
-//   if(err){
-//     console.log(err);
-//   }else{
-//     console.log(response);
-
-//   }
-// });
+// http.put('https://jsonplaceholder.typicode.com/posts/1', data)
+// .then(updatedData => console.log(updatedData))
+// .catch(err => console.log(err));
 
 
-//DELETE MEHOD
-
-httpRequest.delete('https://jsonplaceholder.typicode.com/posts/1', function(err, response){
-    if(err){
-      console.log(err);
-    }else{
-      console.log(response);
-    }
-});
-
+http.delete('https://jsonplaceholder.typicode.com/posts/1')
+    .then(deletedData => console.log(deletedData))
+    .catch(err => console.log(err));

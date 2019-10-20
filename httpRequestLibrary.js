@@ -1,73 +1,56 @@
-//Ajax Http Request Library (GET, POST, PUT, DELETE)
+//Library for making an http request with for http mehods (GET, POST, PUT, DELETE)
 
-//constructor function that offer interface for library
-function HttpRequestLibrary(){
-  this.http = new XMLHttpRequest();
-}
+class HttpRequestLibrary {
 
-
-//GET http method
-HttpRequestLibrary.prototype.get = function(url, callback){
-  this.http.open('GET', url, true);
-
-  let self = this;
-  this.http.onload = function(){
-    if(self.http.status === 200){
-      callback(null, self.http.responseText);
-    }else{
-        callback("Errorr: " + self.http.status);
-    }
+  //HTTP GET REQUEST
+  get(url) {
+    return new Promise((resolve, reject) => {
+      fetch(url)
+        .then(res => res.json())
+        .then(data => resolve(data))
+        .catch(err => reject(err));
+    });
   }
 
-  this.http.send();
-}
-
-//POST http mehod
-HttpRequestLibrary.prototype.post = function(url, data, callback){
-  this.http.open('POST', url, true);
-
-  this.http.setRequestHeader('Content-Type', 'application/json');
-  let self = this;
-  this.http.onload = function(){
-    if(self.http.status === 201){
-      callback(null, self.http.responseText);
-    }else{
-      callback('Error: ' + self.http.status);
-    }
-    
-  }
-  this.http.send(JSON.stringify(data));
-}
-
-//PUT http mehod
-HttpRequestLibrary.prototype.put = function(url, data, callback){
-  this.http.open('PUT', url, true);
-
-  this.http.setRequestHeader('Content-Type', 'application/json');
-
-  let self = this;
-  this.http.onload = function(){
-    if(self.http.status === 200){
-      callback(null, self.http.responseText);
-    }else{
-      callback('Error: ' +  self.http.status);
-    }
+  //HTTP POST REQUEST
+  post(url, data) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'POST',
+        header: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(newData => resolve(newData))
+        .catch(() => reject('Error: Faild to post'));
+    });
   }
 
-  this.http.send(JSON.stringify(data));
-}
-
-//DELETE http mehtod
-HttpRequestLibrary.prototype.delete = function(url, callback){
-  this.http.open('DELETE', url, true);
-
-  const self = this;
-  this.http.onload = function(){
-    if(self.http.status === 200){
-      callback(null, 'Post Deleted');
-    }else{
-      callback('Error: ' + self.http.status);
-    }
+  //HTTP PUT REQUEST
+  put(url, data) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(updatedData => resolve(updatedData))
+        .catch(() => reject('Error: Faild to update (PUT)'));
+    });
   }
-  this.http.send();
+
+  //HTTP DELETE REQUEST
+  delete(url) {
+    return new Promise((resolve, reject) => {
+      fetch(url, {
+        method: 'DELETE',
+        headers: { 'Content-type': 'application/json' },
+      })
+        .then(response => response.json())
+        .then(() => resolve('Data deleted'))
+        .catch(() => reject('Error: Faild to delete'));
+    });
+  }
 }
+
